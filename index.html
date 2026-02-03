@@ -2,92 +2,83 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Michaelbyte | Indie Game Dev</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MichaelByte | Game Developer | Unreal Engine</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  background: black;
   color: #ddd;
   font-family: 'Segoe UI', sans-serif;
   overflow-x: hidden;
-  position: relative;
+
+  /* BACKGROUND UNIFIED */
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%),
+    linear-gradient(180deg, #000 0%, #050505 40%, #000 100%);
 }
 
-/* HERO */
+/* PARTICLES ON WHOLE PAGE */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 120px 120px;
+  animation: moveStars 120s linear infinite;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: 500px 500px; }
+}
+
+/* ================= HERO ================= */
 .hero {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden;
+  padding: 40px 20px;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 80%);
-  pointer-events: none;
-  z-index: 1;
-  animation: floatLight 15s ease-in-out infinite alternate;
-}
-
-@keyframes floatLight {
-  0% { transform: scale(1) translateY(0); }
-  50% { transform: scale(1.05) translateY(-10px); }
-  100% { transform: scale(1) translateY(0); }
-}
-
-/* Particles effect */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 120px 120px; /* spacing أكبر يعني particles أقل */
-  animation: moveStars 120s linear infinite; /* أبطأ حركة */
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes moveStars {
-  0% { background-position: 0 0; }
-  100% { background-position: 500px 500px; } /* أقل حركة */
-}
-
-.hero h1,
-.hero p,
-.hero img {
-  position: relative;
-  z-index: 2;
-}
-
-/* PROFILE IMAGE */
 .profile-img {
-  width: 140px;
-  height: 140px;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #ffd700;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   animation: floatImg 4s ease-in-out infinite;
 }
 
 @keyframes floatImg {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   margin: 0;
   letter-spacing: 2px;
+}
+
+.hero p {
+  margin-top: 10px;
+  opacity: 0.85;
+  font-size: 1.1rem;
 }
 
 /* GOLD TEXT */
@@ -100,28 +91,28 @@ body {
 }
 
 @keyframes shine {
-  0% { background-position: 0% }
-  100% { background-position: 200% }
+  to { background-position: 200%; }
 }
 
-.hero p {
-  margin-top: 10px;
-  opacity: 0.8;
-}
-
-/* SECTION */
+/* ================= SECTION ================= */
 .section {
-  padding: 80px 15%;
+  padding: 70px clamp(15px, 6vw, 15%);
 }
 
 .section h2 {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
-/* PROJECT CARD */
+/* ================= GAME CARD ================= */
 .game {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 3px solid #ffd700;
-  padding-left: 20px;
+  border-radius: 16px;
+  padding: 25px;
   margin-bottom: 60px;
   opacity: 0;
   transform: translateY(40px);
@@ -133,13 +124,15 @@ body {
   transform: translateY(0);
 }
 
-/* IMAGE SLIDER */
+/* ================= IMAGE SLIDER ================= */
 .game-images {
   position: relative;
+  width: 100%;
   max-width: 600px;
-  height: 340px;
-  margin: 15px 0;
+  aspect-ratio: 16 / 9;
+  margin: 20px 0;
   overflow: hidden;
+  border-radius: 14px;
 }
 
 .game-images img {
@@ -148,8 +141,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   opacity: 0;
   transition: opacity 0.8s ease;
 }
@@ -166,11 +157,11 @@ body {
   background: rgba(0,0,0,0.6);
   border: 1px solid #ffd700;
   color: #ffd700;
-  font-size: 20px;
+  font-size: 18px;
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 50%;
-  z-index: 10;
+  z-index: 5;
   transition: 0.3s;
 }
 
@@ -182,7 +173,7 @@ body {
 .prev { left: 10px; }
 .next { right: 10px; }
 
-/* ITCH LINK BUTTON */
+/* ITCH LINK */
 .game-link {
   display: inline-block;
   margin-top: 15px;
@@ -192,13 +183,23 @@ body {
   text-decoration: none;
   border-radius: 8px;
   transition: 0.3s ease;
-  font-weight: 500;
 }
 
 .game-link:hover {
   background: #ffd700;
   color: black;
   transform: translateX(5px);
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 20px;
+  }
+
+  .game {
+    padding: 20px;
+  }
 }
 </style>
 </head>
@@ -213,15 +214,14 @@ body {
 </div>
 
 <div class="section">
-  <h2>My Games</h2>
+  <h2>My Full Games</h2>
 
-  <!-- GREYMAN -->
   <div class="game reveal">
     <h3>GREYMAN</h3>
 
     <div class="game-images">
-      <button class="slider-btn prev">‹-</button>
-      <button class="slider-btn next">-›</button>
+      <button class="slider-btn prev">‹</button>
+      <button class="slider-btn next">›</button>
 
       <img src="images/Greyman/EY400H.png" class="active">
       <img src="images/Greyman/n3nPYa.png">
@@ -238,13 +238,12 @@ body {
     </a>
   </div>
 
-  <!-- FLOW FLAME -->
   <div class="game reveal">
     <h3>Flow Flame</h3>
 
     <div class="game-images">
-      <button class="slider-btn prev">‹-</button>
-      <button class="slider-btn next">-›</button>
+      <button class="slider-btn prev">‹</button>
+      <button class="slider-btn next">›</button>
 
       <img src="images/FlowFlame/49yJSD.png" class="active">
       <img src="images/FlowFlame/JZdkKG.png">
@@ -259,13 +258,12 @@ body {
     </a>
   </div>
 
-  <!-- BABY TEARS -->
   <div class="game reveal">
     <h3>Baby Tears</h3>
 
     <div class="game-images">
-      <button class="slider-btn prev">‹-</button>
-      <button class="slider-btn next">-›</button>
+      <button class="slider-btn prev">‹</button>
+      <button class="slider-btn next">›</button>
 
       <img src="images/BabyTears/3O9Znq (1).png" class="active">
       <img src="images/BabyTears/Z+wLtx (1).png">
@@ -280,13 +278,12 @@ body {
 </div>
 
 <script>
-// Reveal animation
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
-  const windowHeight = window.innerHeight;
+  const h = window.innerHeight;
   reveals.forEach(el => {
-    if (el.getBoundingClientRect().top < windowHeight - 100) {
+    if (el.getBoundingClientRect().top < h - 100) {
       el.classList.add("show");
     }
   });
@@ -295,31 +292,30 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-// Slider logic
 document.querySelectorAll(".game-images").forEach(slider => {
-  const images = slider.querySelectorAll("img");
-  const nextBtn = slider.querySelector(".next");
-  const prevBtn = slider.querySelector(".prev");
-  let index = 0;
+  const imgs = slider.querySelectorAll("img");
+  const next = slider.querySelector(".next");
+  const prev = slider.querySelector(".prev");
+  let i = 0;
 
-  function showImage(i) {
-    images.forEach(img => img.classList.remove("active"));
-    images[i].classList.add("active");
-  }
-
-  nextBtn.onclick = () => {
-    index = (index + 1) % images.length;
-    showImage(index);
+  const show = n => {
+    imgs.forEach(img => img.classList.remove("active"));
+    imgs[n].classList.add("active");
   };
 
-  prevBtn.onclick = () => {
-    index = (index - 1 + images.length) % images.length;
-    showImage(index);
+  next.onclick = () => {
+    i = (i + 1) % imgs.length;
+    show(i);
+  };
+
+  prev.onclick = () => {
+    i = (i - 1 + imgs.length) % imgs.length;
+    show(i);
   };
 
   setInterval(() => {
-    index = (index + 1) % images.length;
-    showImage(index);
+    i = (i + 1) % imgs.length;
+    show(i);
   }, 3000);
 });
 </script>
