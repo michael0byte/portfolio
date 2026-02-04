@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michaelbyte | Game Details</title>
+</head>
+<body>
+
+<div class="Gamehero reveal">
+  <a href="index.html" class="home-btn">Home</a>
+  <h1>Flow Flame</h1>
+  <p>2D platformer based on elemental masks</p>
+</div>
+
+<div class="section reveal">
+  <h2>Game Details</h2>
+
+  <div class="game-description">
+    <p><strong>Developer:</strong> MichaelByte</p>
+    <p><strong>Build Duration:</strong> 48 hours</p>
+    <p><strong>Game Jam:</strong> Global Game Jam</p>
+
+    <h3><span class="gold">Core</span> Gameplay Mechanics :</h3>
+    <ul>
+      <li>Timer & Scoring System <br> The game features a countdown timer starting at 10 seconds. If the timer reaches 0, the player dies. Simultaneously, a score counter increments by 1 every second, tracking survival time</li>
+      &emsp;
+      <li>Player Movement & Mask System <br> The player can move left and right, jump, and equip one of three masks. Each mask represents a distinct state, affecting interactions with platforms</li>
+      &emsp;
+      <li>Dynamic Platform System <br> When the player jumps from one platform to another, a collision box in mid-air triggers an event. This event signals the previous platform to disappear and generates a new platform at a distance equal to the previous platform plus a random offset within a defined range. Platforms are assigned a color randomly from a set of three: green (0), red (1), or blue (2), determining their interaction with the player’s mask</li>
+      &emsp;
+      <li>Mask-Based Platform Interaction <br> Each platform has a collision box above it. When the player touches it, the system checks which mask is currently equipped</li>
+      &emsp;
+      <li>If the platform’s color matches the mask state, the player survives and continues the sequence, and also checks the timer: if the remaining time is less than 15 seconds, it adds 5 seconds to the timer, allowing brief survival extensions</li>
+      &emsp;
+      <li>The player dies if: <br>
+1- The timer reaches 0 without extension<br>
+2- The player falls off platforms<br>
+3- The player lands on a platform without the matching mask equipped</li>
+    </ul>
+
+    <a href="https://michaelbyte.itch.io/flow-flame" target="_blank" class="game-link">
+      Play on itch.io
+    </a>
+  </div>
+</div>
+    <div class="game-images">
+      <button class="slider-btn prev">‹</button>
+      <button class="slider-btn next">›</button>
+
+      <img src="images/FlowFlame/49yJSD.png" class="active">
+      <img src="images/FlowFlame/JZdkKG.png">
+      <img src="images/FlowFlame/RJsUp8.png">
+      <img src="images/FlowFlame/Pdrg_o.png">
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

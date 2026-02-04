@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michaelbyte | Game Details</title>
+</head>
+<body>
+
+<div class="Gamehero reveal">
+  <a href="index.html" class="home-btn">Home</a>
+  <h1>GREYMAN</h1>
+  <p>A stealth narrative game about masks and identity</p>
+</div>
+
+<div class="section reveal">
+  <h2>Game Details</h2>
+
+  <div class="game-description">
+    <p><strong>Developer:</strong> MichaelByte</p>
+    <p><strong>Build Duration:</strong> 48 hours</p>
+    <p><strong>Game Jam:</strong> Canadian University, Egypt (8th place)</p>
+
+    <h3><span class="gold">Core</span> Gameplay Mechanics :</h3>
+    <ul>
+      <li>Player Movement & Mask System <br> Implemented a basic player movement system with an expandable mask system, allowing equipping/unequipping masks with a button and switching between multiple masks. Each mask represents a distinct state, controlled by Boolean variables to ensure only one mask is active at a time</li>
+      &emsp;
+      <li>State-Driven Visual Feedback <br> Mask states dynamically update player and mask materials, providing clear and immediate visual feedback without relying on additional UI elements</li>
+      &emsp;
+      <li>AI Perception System (Vision & Hearing) <br> Enemies use a <a href=" " target="_blank" class="game-link-two">
+      <span class="gold">vision and hearing system</span></a> to detect the player. When the player enters the AI’s perception range, the system evaluates the player’s mask state, adding a tactical stealth layer rather than direct confrontation</li>      
+      &emsp;
+      <li>Mask-Based Enemy Behavior <br> Enemy behavior is determined by comparing the player’s current mask with the AI’s expected mask. Matching states result in no action, while mismatched states trigger a Behavior Tree to attack the player. This system supports stealth gameplay and rewards strategic player choices</li>
+      &emsp;
+      <li>Dynamic AI Typing & Scalability <br> On spawn, each enemy is assigned a random type (Red / Blue) using a simple variable. This makes the same AI Blueprint reusable and scalable, allowing easy addition of new enemy types or masks without rewriting core logic</li>
+    </ul>
+
+    <a href="https://michaelbyte.itch.io/greyman" target="_blank" class="game-link">
+      Play on itch.io
+    </a>
+  </div>
+</div>
+<div class="game-images">
+  <button class="slider-btn prev">‹</button>
+  <button class="slider-btn next">›</button>
+
+  <img src="images/Greyman/EY400H.png" class="active">
+  <img src="images/Greyman/n3nPYa.png">
+  <img src="images/Greyman/soteri.png">
+  <img src="images/Greyman/OGLWNO.png">
+  <img src="images/Greyman/PuNAWt.png">
+</div>
+<script src="script.js"></script>
+</body>
+</html>
