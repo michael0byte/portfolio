@@ -236,20 +236,29 @@ body::after {
 
 .video-container {
   position: relative;
-  width: 100%;         /* ياخد كل عرض الصفحة */
-  max-width: 1100px;   /* أقصى عرض لو عايز يبقى مش كبير جدًا */
-  margin: 0 auto 50px; /* في النص وفاصل تحت */
-  aspect-ratio: 16 / 9; /* يحافظ على نسبة العرض للطول */
+  width: 100%;           /* ياخد كل عرض الصفحة */
+  max-width: 1100px;     /* أقصى عرض للفيديو */
+  margin: 50px auto;     /* في النص وفاصل من فوق وتحت */
+  aspect-ratio: 16 / 9;  /* يحافظ على نسبة العرض للطول */
   overflow: hidden;
   border-radius: 20px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background-color: #000; /* في حالة تحميل الفيديو يتبان خلفية سوداء */
 }
 
+/* ===== Video Element ===== */
 .video-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;   /* يخلي الفيديو يملأ المساحة بدون تشويه */
-  border-radius: 20px;
+  width: 100%;           /* يملا العرض كله */
+  height: 100%;          /* يملا الارتفاع حسب النسبة */
+  object-fit: cover;     /* يحافظ على الفيديو من التشويه */
+  border-radius: 20px;   /* نفس انحناء الكونتينر */
+  display: block;
+}
+
+/* Optional: Hover effect */
+.video-container:hover video {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }
 
 
