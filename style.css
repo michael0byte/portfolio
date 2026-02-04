@@ -236,13 +236,14 @@ body::after {
 
 .video-container {
   position: relative;
-  width: 100%;
-  max-width: 1100px; 
-  margin: 50px auto;
-  padding-top: 56.25%;
+  width: 100%;            /* ياخد كل عرض الصفحة */
+  max-width: 1100px;      /* أقصى عرض */
+  margin: 50px auto;      /* في النص وفاصل من فوق وتحت */
+  padding-top: 56.25%;    /* نسبة 16:9 للارتفاع */
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background-color: #000;
 }
 
 .video-container iframe {
@@ -253,6 +254,7 @@ body::after {
   height: 100%;
   border: none;
 }
+
 
 
 /* ================= MOBILE ================= */
@@ -271,4 +273,5 @@ body::after {
     gap: 10px;
   }
 }
+
 
