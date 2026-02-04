@@ -1,217 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="style.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MichaelByte | Game Developer | Unreal Engine</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  color: #ddd;
-  font-family: 'Segoe UI', sans-serif;
-  overflow-x: hidden;
-
-  /* BACKGROUND UNIFIED */
-  background:
-    radial-gradient(circle at top, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%),
-    linear-gradient(180deg, #000 0%, #050505 40%, #000 100%);
-}
-
-/* PARTICLES ON WHOLE PAGE */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 120px 120px;
-  animation: moveStars 120s linear infinite;
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: -1;
-}
-
-@keyframes moveStars {
-  from { background-position: 0 0; }
-  to { background-position: 500px 500px; }
-}
-
-/* ================= HERO ================= */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.profile-img {
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ffd700;
-  margin-bottom: 25px;
-  animation: floatImg 4s ease-in-out infinite;
-}
-
-@keyframes floatImg {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
-.hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  margin: 0;
-  letter-spacing: 2px;
-}
-
-.hero p {
-  margin-top: 10px;
-  opacity: 0.85;
-  font-size: 1.1rem;
-}
-
-/* GOLD TEXT */
-.gold {
-  background: linear-gradient(45deg, #b68d2d, #ffd700, #fff2b0);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 3s linear infinite;
-}
-
-@keyframes shine {
-  to { background-position: 200%; }
-}
-
-/* ================= SECTION ================= */
-.section {
-  padding: 70px clamp(15px, 6vw, 15%);
-}
-
-.section h2 {
-  margin-bottom: 50px;
-  text-align: center;
-}
-
-/* ================= GAME CARD ================= */
-.game {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: 3px solid #ffd700;
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 60px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s ease;
-}
-
-.game.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ================= IMAGE SLIDER ================= */
-.game-images {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  aspect-ratio: 16 / 9;
-  margin: 20px 0;
-  overflow: hidden;
-  border-radius: 14px;
-}
-
-.game-images img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-.game-images img.active {
-  opacity: 1;
-}
-
-/* SLIDER BUTTONS */
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.6);
-  border: 1px solid #ffd700;
-  color: #ffd700;
-  font-size: 18px;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 5;
-  transition: 0.3s;
-}
-
-.slider-btn:hover {
-  background: #ffd700;
-  color: black;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
-/* ITCH LINK */
-.game-link {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 18px;
-  border: 1px solid #ffd700;
-  color: #ffd700;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: 0.3s ease;
-}
-
-.game-link:hover {
-  background: #ffd700;
-  color: black;
-  transform: translateX(5px);
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-  .section {
-    padding: 50px 20px;
-  }
-
-  .game {
-    padding: 20px;
-  }
-}
-</style>
+<title>Michaelbyte | Indie Game Dev</title>
 </head>
 
 <body>
-
-<!-- HERO -->
-<div class="hero">
+<div class="hero reveal">
   <img src="images/MichaelByte_Im.jpg" class="profile-img">
   <h1>MICHAEL<span class="gold">BYTE</span></h1>
-  <p>Indie Game Developer</p>
+  <p>Game Developer | <span class="gold">U</span>nreal Engine</p>
 </div>
+
+<div class="video-container">
+  <video controls>
+    <source src="videos/michaelbyte_V_2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
 
 <div class="section">
   <h2>My Full Games</h2>
@@ -233,9 +43,16 @@ body::after {
     <p>A stealth narrative game about masks and identity, built in 48 hours.</p>
     <p>Made during Game Jam 2026 – Canadian University, Egypt (8th place).</p>
 
-    <a href="https://michaelbyte.itch.io/greyman" target="_blank" class="game-link">
-      Play on itch.io
-    </a>
+<div class="game-buttons">
+  <a href="https://michaelbyte.itch.io/greyman" target="_blank" class="game-link">
+    Play on itch.io
+  </a>
+  <a href="greymanD.html" class="game-link">
+    See Details
+  </a>
+</div>
+
+</div>
   </div>
 
   <div class="game reveal">
@@ -253,9 +70,16 @@ body::after {
 
     <p>2D platformer based on elemental masks, built in 48 hours.</p>
 
-    <a href="https://michaelbyte.itch.io/flow-flame" target="_blank" class="game-link">
-      Play on itch.io
-    </a>
+<div class="game-buttons">
+  <a href="https://michaelbyte.itch.io/flow-flame" target="_blank" class="game-link">
+    Play on itch.io
+  </a>
+  <a href="FlowFlameD.html" class="game-link">
+    See Details
+  </a>
+</div>
+
+
   </div>
 
   <div class="game reveal">
@@ -271,54 +95,17 @@ body::after {
 
     <p>One of my early projects while learning game development.</p>
 
-    <a href="https://michaelbyte.itch.io/babytears" target="_blank" class="game-link">
-      Play on itch.io
-    </a>
-  </div>
+<div class="game-buttons">
+  <a href="https://michaelbyte.itch.io/babytears" target="_blank" class="game-link">
+    Play on itch.io
+  </a>
+  <!--<a href="greymanD.html" class="game-link">
+    See Details
+  </a>-->
 </div>
 
-<script>
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  const h = window.innerHeight;
-  reveals.forEach(el => {
-    if (el.getBoundingClientRect().top < h - 100) {
-      el.classList.add("show");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
-
-document.querySelectorAll(".game-images").forEach(slider => {
-  const imgs = slider.querySelectorAll("img");
-  const next = slider.querySelector(".next");
-  const prev = slider.querySelector(".prev");
-  let i = 0;
-
-  const show = n => {
-    imgs.forEach(img => img.classList.remove("active"));
-    imgs[n].classList.add("active");
-  };
-
-  next.onclick = () => {
-    i = (i + 1) % imgs.length;
-    show(i);
-  };
-
-  prev.onclick = () => {
-    i = (i - 1 + imgs.length) % imgs.length;
-    show(i);
-  };
-
-  setInterval(() => {
-    i = (i + 1) % imgs.length;
-    show(i);
-  }, 3000);
-});
-</script>
-
+</div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
