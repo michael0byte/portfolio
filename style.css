@@ -100,7 +100,7 @@ body::after {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 100px; /* مسافة كافية لمنع التداخل مع زر Home */
+  padding-top: 100px;
   padding-bottom: 30px;
 }
 
@@ -177,29 +177,36 @@ body::after {
   opacity: 1;
 }
 
-/* Slider Buttons */
+/* Modern Centered Slider Buttons */
 .slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  font-size: 32px;
+  font-size: 18px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 5;
-  opacity: 0.8;
-  padding: 5px 15px;
   border-radius: 50%;
   transition: all 0.25s ease;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  user-select: none;
 }
 
 .slider-btn:hover {
-  opacity: 1;
-  background: rgba(161, 120, 223, 0.6);
-  transform: translateY(-50%) scale(1.1);
+  background: var(--accent-purple);
   border-color: transparent;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .prev { left: 15px; }
@@ -314,9 +321,13 @@ body::after {
   }
 
   .slider-btn {
-    font-size: 26px;
-    padding: 4px 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
   }
+
+  .prev { left: 10px; }
+  .next { right: 10px; }
 
   .game-buttons {
     flex-direction: column;
