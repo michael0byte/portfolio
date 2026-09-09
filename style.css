@@ -15,7 +15,6 @@
 body {
   margin: 0;
   color: #ddd;
-  padding-top: 60px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
   background:
@@ -41,7 +40,7 @@ body::after {
   to { background-position: 500px 500px; }
 }
 
-/* ================= HERO SECTION ================= */
+/* ================= HERO SECTION (MAIN PAGE) ================= */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -50,7 +49,6 @@ body::after {
   align-items: center;
   text-align: center;
   padding: 20px;
-  padding-top: 40px;
 }
 
 .profile-img {
@@ -95,9 +93,25 @@ body::after {
   to { background-position: 200% center; }
 }
 
-/* ================= SECTIONS ================= */
+/* ================= GAME DETAILS PAGE HERO ================= */
+.Gamehero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 100px; /* مسافة كافية لمنع التداخل مع زر Home */
+  padding-bottom: 30px;
+}
+
+.Gamehero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin: 0 0 10px 0;
+}
+
+/* ================= SECTIONS & CONTAINERS ================= */
 .section {
-  padding: 80px clamp(15px, 6vw, 12%);
+  padding: 60px clamp(15px, 6vw, 12%);
 }
 
 .section h2 {
@@ -107,14 +121,15 @@ body::after {
   letter-spacing: 0.5px;
 }
 
-/* ================= GAME CARD ================= */
-.game {
+/* ================= GAME CARD & DETAILS ================= */
+.game,
+.game-description {
   background-color: rgba(15, 15, 20, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   width: 100%;
   max-width: 1100px;
-  margin: 0 auto 50px;
+  margin: 0 auto 40px;
   border-radius: 20px;
   padding: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -126,6 +141,14 @@ body::after {
   margin-bottom: 20px;
   font-size: 1.6rem;
   color: #fff;
+}
+
+.game p,
+.game-description p {
+  max-width: 900px;
+  margin: 0 0 12px;
+  line-height: 1.6;
+  color: #ccc;
 }
 
 /* ================= RESPONSIVE FRAME SLIDER ================= */
@@ -182,15 +205,7 @@ body::after {
 .prev { left: 15px; }
 .next { right: 15px; }
 
-/* Game Details Text */
-.game p {
-  max-width: 900px;
-  margin: 0 0 10px;
-  line-height: 1.6;
-  color: #ccc;
-}
-
-/* Links & Buttons */
+/* ================= BUTTONS & LINKS ================= */
 .game-buttons {
   display: flex;
   justify-content: space-between;
@@ -221,6 +236,27 @@ body::after {
   transform: translateY(-2px);
 }
 
+/* Fixed Home Button */
+.home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  z-index: 100;
+  box-shadow: 0 0 15px var(--accent-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px var(--accent-glow-strong);
+}
+
 /* ================= VIDEO CONTAINER ================= */
 .video-container {
   position: relative;
@@ -244,27 +280,6 @@ body::after {
   border: none;
 }
 
-/* ================= HOME BUTTON ================= */
-.home-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  padding: 10px 20px;
-  background: var(--accent-gradient);
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 10px;
-  z-index: 100;
-  box-shadow: 0 0 15px var(--accent-glow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.home-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px var(--accent-glow-strong);
-}
-
 /* ================= SCROLL REVEAL ANIMATION ================= */
 .reveal {
   opacity: 0;
@@ -281,11 +296,16 @@ body::after {
 
 /* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .section {
-    padding: 60px 15px;
+  .Gamehero {
+    padding-top: 80px;
   }
 
-  .game {
+  .section {
+    padding: 40px 15px;
+  }
+
+  .game,
+  .game-description {
     padding: 15px;
   }
 
