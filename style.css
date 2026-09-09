@@ -42,23 +42,22 @@ body::after {
 
 /* ================= HERO SECTION (MAIN PAGE) ================= */
 .hero {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 60px 20px 20px; /* تم تقليل المسافة من الأسفل للنصف */
 }
 
 .profile-img {
-  width: 190px;
-  height: 190px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   background: var(--accent-gradient);
   padding: 3px;
   object-fit: cover;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   box-shadow: 0 0 35px var(--accent-glow);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -77,7 +76,8 @@ body::after {
 .hero p {
   opacity: 0.85;
   font-size: 1.1rem;
-  margin-top: 10px;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 /* Gradient Text Effect */
@@ -101,7 +101,7 @@ body::after {
   align-items: center;
   text-align: center;
   padding-top: 100px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .Gamehero h1 {
@@ -111,13 +111,14 @@ body::after {
 
 /* ================= SECTIONS & CONTAINERS ================= */
 .section {
-  padding: 60px clamp(15px, 6vw, 12%);
+  padding: 25px clamp(15px, 6vw, 12%) 50px; /* تقليل المسافة العلوية للنصف */
 }
 
 .section h2 {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 50px;
+  margin-top: 0;
+  margin-bottom: 30px; /* تقليل المسافة أسفل عناوين السكاشن */
   letter-spacing: 0.5px;
 }
 
@@ -290,7 +291,7 @@ body::after {
 /* ================= SCROLL REVEAL ANIMATION ================= */
 .reveal {
   opacity: 0;
-  transform: translateY(50px) scale(0.98);
+  transform: translateY(40px) scale(0.98);
   transition: 
     opacity 0.8s ease,
     transform 0.8s cubic-bezier(.2,.8,.2,1);
@@ -303,12 +304,17 @@ body::after {
 
 /* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 40px;
+    padding-bottom: 10px;
+  }
+
   .Gamehero {
     padding-top: 80px;
   }
 
   .section {
-    padding: 40px 15px;
+    padding: 20px 15px 40px;
   }
 
   .game,
