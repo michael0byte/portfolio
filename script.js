@@ -4,15 +4,15 @@ const reveals = document.querySelectorAll(".reveal");
 function revealOnScroll() {
   const windowHeight = window.innerHeight;
   reveals.forEach((el, i) => {
-    if (el.getBoundingClientRect().top < windowHeight - 100) {
-      el.style.transitionDelay = `${i * 0.12}s`;
+    if (el.getBoundingClientRect().top < windowHeight - 80) {
+      el.style.transitionDelay = `${i * 0.1}s`;
       el.classList.add("show");
     }
   });
 }
 
 window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+window.addEventListener("DOMContentLoaded", revealOnScroll);
 
 
 // ===== Responsive Image Slider =====
