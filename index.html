@@ -5,19 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Michaelbyte | Gameplay Programmer</title>
   <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* ================= CUSTOM STYLES FOR POPUP & TAGS ================= */
+    
+    /* Clickable Skill Tag with Pulse Effect */
+    .clickable-skill {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-color: var(--accent-pink);
+      cursor: pointer;
+    }
+    .check-it {
+      background: var(--accent-gradient);
+      color: white;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      animation: pulseTag 2s infinite;
+      box-shadow: 0 0 10px rgba(210, 121, 207, 0.4);
+    }
+    @keyframes pulseTag {
+      0% { box-shadow: 0 0 0 0 rgba(210, 121, 207, 0.7); }
+      70% { box-shadow: 0 0 0 6px rgba(210, 121, 207, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(210, 121, 207, 0); }
+    }
+
+    /* Floating About Button */
+    .floating-about {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: rgba(15, 15, 20, 0.85);
+      border: 1px solid var(--accent-purple);
+      backdrop-filter: blur(5px);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .floating-about:hover {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px var(--accent-glow-strong);
+    }
+
+    /* Modal (Popup) Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background: rgba(15, 15, 20, 0.95);
+      border: 1px solid var(--accent-purple);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+      transform: scale(0.8);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+    }
+    .modal.show .modal-content {
+      transform: scale(1);
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #aaa;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      color: #fff;
+    }
+    .modal-content p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .floating-about {
+        bottom: 20px;
+        left: 20px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+      .modal-content {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- HERO SECTION (تظهر مباشرة بدون أنيميشن اختفاء) -->
-  <div class="hero">
+  <!-- NAVBAR SECTION -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="#home" class="logo">M<span class="gold">B</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#" class="about-trigger">About</a></li> <!-- Triggers Modal -->
+        <li><a href="#video">Showreel</a></li>
+        <li><a href="#skills">Skills and Code</a></li>
+        <li><a href="#games">Full Games</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <div id="home" class="hero">
     <img src="images/MichaelByte_Im.jpg" alt="MichaelByte Profile" class="profile-img">
     <h1>MICHAEL<span class="gold">BYTE</span></h1>
     <p>Gameplay Programmer | <span class="gold">Unreal Engine</span></p>
   </div>
 
-  <!-- PORTFOLIO VIDEO SECTION -->
-  <div class="section reveal">
+  <!-- PORTFOLIO VIDEO SECTION (MOVED TO TOP) -->
+  <div id="video" class="section reveal" style="padding-top: 20px;">
     <h2>Portfolio Video</h2>
     <div class="video-container">
       <iframe 
@@ -30,87 +172,148 @@
     </div>
   </div>
 
+  <!-- SKILLS SECTION -->
+  <div id="skills" class="section reveal">
+    <h2>Skills & Tools</h2>
+    <div class="skills-grid">
+      <span class="skill-tag">Unreal Engine 5</span>
+      <span class="skill-tag">C++</span>
+      
+      <!-- Clickable Skill: Blueprints -->
+      <a href="Blueprints.html" class="skill-tag clickable-skill">
+        Blueprints <span class="check-it">Check it! 🔗</span>
+      </a>
+      
+      <!-- Clickable Skill: AI Behavior Trees -->
+      <a href="Ais.html" class="skill-tag clickable-skill">
+        AI Behavior Trees <span class="check-it">Check it! 🔗</span>
+      </a>
+      
+      <span class="skill-tag">Gameplay Mechanics</span>
+      <span class="skill-tag">Git / Perforce</span>
+    </div>
+  </div>
+
   <!-- FULL GAMES SECTION -->
-  <div class="section">
+  <div id="games" class="section">
     <h2>My Full Games</h2>
 
     <!-- GAME 1: GREYMAN -->
     <div class="game reveal">
       <h3>GREYMAN</h3>
-
       <div class="game-images">
         <button class="slider-btn prev" aria-label="Previous">&#10094;</button>
         <button class="slider-btn next" aria-label="Next">&#10095;</button>
-
         <img src="images/Greyman/EY400H.png" class="active" alt="Greyman Screenshot 1">
         <img src="images/Greyman/n3nPYa.png" alt="Greyman Screenshot 2">
         <img src="images/Greyman/soteri.png" alt="Greyman Screenshot 3">
         <img src="images/Greyman/OGLWNO.png" alt="Greyman Screenshot 4">
         <img src="images/Greyman/PuNAWt.png" alt="Greyman Screenshot 5">
       </div>
-
       <p>A stealth narrative game about masks and identity, built in 48 hours.</p>
       <p>Made during Game Jam 2026 – Canadian University, Egypt (8th place).</p>
-
       <div class="game-buttons">
-        <a href="https://michaelbyte.itch.io/greyman" target="_blank" class="game-link">
-          Play on itch.io
-        </a>
-        <a href="greymanD.html" class="game-link">
-          See Details
-        </a>
+        <a href="https://michaelbyte.itch.io/greyman" target="_blank" class="game-link">Play on itch.io</a>
+        <a href="greymanD.html" class="game-link">See Details</a>
       </div>
     </div>
 
     <!-- GAME 2: FLOW FLAME -->
     <div class="game reveal">
       <h3>Flow Flame</h3>
-
       <div class="game-images">
         <button class="slider-btn prev" aria-label="Previous">&#10094;</button>
         <button class="slider-btn next" aria-label="Next">&#10095;</button>
-
         <img src="images/FlowFlame/49yJSD.png" class="active" alt="Flow Flame Screenshot 1">
         <img src="images/FlowFlame/JZdkKG.png" alt="Flow Flame Screenshot 2">
         <img src="images/FlowFlame/RJsUp8.png" alt="Flow Flame Screenshot 3">
         <img src="images/FlowFlame/Pdrg_o.png" alt="Flow Flame Screenshot 4">
       </div>
-
       <p>2D platformer based on elemental masks, built in 48 hours.</p>
-
       <div class="game-buttons">
-        <a href="https://michaelbyte.itch.io/flow-flame" target="_blank" class="game-link">
-          Play on itch.io
-        </a>
-        <a href="FlowFlameD.html" class="game-link">
-          See Details
-        </a>
+        <a href="https://michaelbyte.itch.io/flow-flame" target="_blank" class="game-link">Play on itch.io</a>
+        <a href="FlowFlameD.html" class="game-link">See Details</a>
       </div>
     </div>
 
     <!-- GAME 3: BABY TEARS -->
     <div class="game reveal">
       <h3>Baby Tears</h3>
-
       <div class="game-images">
         <button class="slider-btn prev" aria-label="Previous">&#10094;</button>
         <button class="slider-btn next" aria-label="Next">&#10095;</button>
-
         <img src="images/BabyTears/3O9Znq (1).png" class="active" alt="Baby Tears Screenshot 1">
         <img src="images/BabyTears/Z+wLtx (1).png" alt="Baby Tears Screenshot 2">
       </div>
-
       <p>One of my early projects while learning game development.</p>
-
       <div class="game-buttons">
-        <a href="https://michaelbyte.itch.io/babytears" target="_blank" class="game-link">
-          Play on itch.io
-        </a>
+        <a href="https://michaelbyte.itch.io/babytears" target="_blank" class="game-link">Play on itch.io</a>
       </div>
     </div>
+  </div>
 
+  <!-- CONTACT & FOOTER SECTION -->
+  <footer id="contact" class="footer reveal">
+    <h2>Get In Touch</h2>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/michaelbyte/" target="_blank" class="game-link">LinkedIn</a>
+      <a href="https://github.com/michael0byte/CV/raw/refs/heads/main/Michael_Saad_CV.pdf" target="_blank" class="game-link cv-btn">Download CV</a>
+    </div>
+    <p class="copyright">&copy; 2026 MichaelByte. All rights reserved.</p>
+  </footer>
+
+  <!-- FLOATING ABOUT BUTTON -->
+  <button class="about-trigger floating-about" aria-label="About Me">
+    <span>💡</span> About Me
+  </button>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to Top">&#8679;</button>
+
+  <!-- ================= ABOUT ME MODAL (POPUP) ================= -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 style="margin: 0; color: #fff;">About <span class="gold">Me</span></h2>
+      <p>
+        Unreal Engine Developer with 3 years of hands-on experience in Blueprint visual scripting, gameplay mechanics, AI behavior systems, C++, and 3D asset integration. 
+        <br><br>
+        Pursuing a B.Sc. in Computer Science (Expected 2027) with a strong problem-solving foundation and a proven track record of delivering engaging game experiences from concept to completion.
+      </p>
+    </div>
   </div>
 
   <script src="script.js"></script>
+  
+  <!-- SCRIPT FOR POPUP MODAL -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById('aboutModal');
+      const triggers = document.querySelectorAll('.about-trigger');
+      const closeBtn = document.querySelector('.close-btn');
+
+      // Open Modal
+      triggers.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal.classList.add('show');
+        });
+      });
+
+      // Close Modal (X Button)
+      if(closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('show');
+        });
+      }
+
+      // Close Modal (Clicking outside)
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('show');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michaelbyte | Blueprint Mechanics</title>
+  
+  <style>
+    /* ================= BLUEPRINT GRID (1x4 ROW) ================= */
+    .blueprint-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 صور في صف واحد */
+      gap: 15px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 30px; /* المسافة بين الصور والشرح */
+    }
+
+    .img-wrapper {
+      position: relative;
+      cursor: pointer; /* تغيير الماوس ليد للتعبير عن إمكانية الضغط */
+    }
+
+    .blueprint-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    /* أرقام الترتيب على الصور */
+    .step-number {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      width: 35px;
+      height: 35px;
+      background: var(--accent-gradient);
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      z-index: 5;
+      box-shadow: 0 0 15px var(--accent-glow);
+      border: 2px solid #050508;
+    }
+
+    /* تأثيرات الوقوف على الصورة */
+    .img-wrapper:hover img {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--accent-glow);
+      border-color: var(--accent-purple);
+    }
+
+    /* ================= IMAGE POP-UP MODAL ================= */
+    .image-modal {
+      display: none; /* مخفي افتراضياً */
+      position: fixed;
+      z-index: 2000;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px var(--accent-glow);
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.8); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-modal:hover {
+      color: var(--accent-pink);
+    }
+
+    /* ================= RESULT VIDEO FIX ================= */
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+
+    /* استجابة الموبايل */
+    @media (max-width: 900px) {
+      .blueprint-grid { grid-template-columns: repeat(2, 1fr); } /* صورتين على التابلت */
+    }
+    @media (max-width: 500px) {
+      .blueprint-grid { grid-template-columns: 1fr; } /* صورة واحدة في الصف للموبايل */
+    }
+  </style>
+</head>
+<body>
+
+<div class="Gamehero reveal">
+  <a href="index.html" class="home-btn">Home</a>
+  <h1>Blueprint <span class="gold">Mechanics</span></h1>
+  <p>Deep dive into core gameplay systems and visual scripting</p>
+</div>
+
+<div class="section reveal">
+  <h2>Melee Attack System</h2>
+
+  <!-- شبكة الصور بترتيب الأرقام قبل الشرح -->
+  <div class="blueprint-grid reveal">
+    <div class="img-wrapper" onclick="openModal(this)">
+      <span class="step-number">1</span>
+      <img src="images/Blueprints/Screenshot 2026-10-18 210410.png" alt="State Management & Validation">
+    </div>
+    
+    <div class="img-wrapper" onclick="openModal(this)">
+      <span class="step-number">2</span>
+      <img src="images/Blueprints/Screenshot 2026-10-18 210424.png" alt="Animation Montage & Notifies">
+    </div>
+    
+    <div class="img-wrapper" onclick="openModal(this)">
+      <span class="step-number">3</span>
+      <img src="images/Blueprints/Screenshot 2026-10-18 210435.png" alt="Delay and State Reset">
+    </div>
+    
+    <div class="img-wrapper" onclick="openModal(this)">
+      <span class="step-number">4</span>
+      <img src="images/Blueprints/Screenshot 2026-10-18 210445.png" alt="Sphere Trace Hit Detection Logic">
+    </div>
+  </div>
+
+  <!-- الشرح -->
+  <div class="game-description">
+    <p>This system handles the player's basic melee attack logic, ensuring smooth execution, state management, and accurate hit detection.</p>
+
+    <h3><span class="gold">System</span> Breakdown :</h3>
+    <ul>
+      <li><strong>State Management & Validation (1)</strong> <br> When an attack is triggered, the system first verifies two critical states: it confirms the player has the weapon (knife) in their inventory, and it checks if an attack is already in progress. This prevents attack spamming. Once validated, the system restricts movement by setting velocity to zero and disabling walking, ensuring the player is grounded during the swing.</li>
+      &emsp;
+      <li><strong>Animation Integration & Notifies (2)</strong> <br> The visual feedback is driven by an Animation Montage. I utilize three Animation Notifies to tightly couple the visual animation with gameplay logic: <br>
+      - <code>get</code>: Triggered at the start to make the weapon mesh visible.<br>
+      - <code>hit</code>: The precise moment of the strike, routing logic to the hit detection branch.<br>
+      - <code>end</code>: Triggered at the end of the animation to hide the weapon mesh.</li>
+      &emsp;
+      <li><strong>Hit Detection Sphere Trace (3)</strong> <br> Triggered by the <code>hit</code> notify, the system calculates the attack trajectory. It retrieves the <code>Camera Boom</code> world location, calculates the <code>Forward Vector</code> multiplied by a range offset, and executes a <code>Sphere Trace By Channel</code>. This creates a volume that detects overlaps, ensuring accurate and forgiving hit registration.</li>
+      &emsp;
+      <li><strong>Delay and State Reset (4)</strong> <br> After a short delay post-trace (0.3s), the system resets the player's state, re-enabling movement and allowing them to initiate subsequent attacks.</li>
+      &emsp;
+      </ul>
+  </div>
+
+  <!-- قسم النتيجة (فيديو اللعب) -->
+  <div class="game-description" style="margin-top: 40px; text-align: center;">
+    <h3 style="margin-bottom: 20px;">Gameplay <span class="gold">Result</span></h3>
+    <div class="video-container">
+      <iframe 
+        src="https://youtu.be/S1Gq1XlHALM" 
+        title="MichaelByte Blueprints (1)" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+</div>
+
+<!-- حاوية الـ Pop-up لتكبير الصور (مخفية) -->
+<div id="imageModal" class="image-modal">
+  <span class="close-modal" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="expandedImg">
+</div>
+
+<!-- سكريبت تشغيل الـ Pop-up -->
+<script>
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("expandedImg");
+
+  // فتح الـ Pop-up
+  function openModal(element) {
+    const img = element.querySelector('img');
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+  }
+
+  // قفل الـ Pop-up
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  // قفل الـ Pop-up لما تدوس في أي حتة برة الصورة
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michaelbyte | AI Behavior Trees</title>
+  <style>
+    /* حل مشكلة قطع الخلفية في الشاشات الكبيرة */
+    body {
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+
+    /* تنسيق مخصوص لصفحة Coming Soon */
+    .coming-soon-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* خليناها 100% بدل 80% */
+      text-align: center;
+      padding-top: 70px; /* مسافة عشان الـ Navbar مايغطيش على المحتوى */
+      box-sizing: border-box;
+    }
+
+    .coming-soon-container h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px var(--accent-glow-strong);
+    }
+
+    .coming-soon-container p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      padding: 0 20px; /* لحماية النص في شاشات الموبايل */
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(161, 120, 223, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--accent-purple);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 30px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR SECTION -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">M<span class="gold">BYTE</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- COMING SOON CONTENT -->
+  <div class="coming-soon-container reveal">
+    <div class="loader"></div>
+    <h1>COMING <span class="gold">SOON</span></h1>
+    <p>I'm currently structuring the documentation for my AI Behavior Trees and stealth mechanics. This section will feature deep dives into state-driven enemy perception, decision making, and dynamic patrol routing.</p>
+    
+    <a href="index.html" class="game-link" style="padding: 15px 40px; font-size: 1.1rem;">
+      Back to Home
+    </a>
+  </div>
+
+  <!-- SCROLL ANIMATION SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>

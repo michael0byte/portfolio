@@ -1,15 +1,26 @@
+
 /* ================= GLOBAL & RESET ================= */
-* { 
-  box-sizing: border-box; 
+
+* {
+  box-sizing: border-box;
 }
 
 :root {
   --accent-blue: #7ea0ec;
   --accent-purple: #a178df;
   --accent-pink: #d279cf;
-  --accent-gradient: linear-gradient(135deg, #7ea0ec 0%, #a178df 50%, #d279cf 100%);
+  --accent-gradient: linear-gradient(
+    135deg,
+    #7ea0ec 0%,
+    #a178df 50%,
+    #d279cf 100%
+  );
   --accent-glow: rgba(161, 120, 223, 0.35);
   --accent-glow-strong: rgba(210, 121, 207, 0.6);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -18,16 +29,24 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at top, rgba(161, 120, 223, 0.12) 0%, rgba(0,0,0,0) 70%),
+    radial-gradient(
+      circle at top,
+      rgba(161, 120, 223, 0.12) 0%,
+      rgba(0, 0, 0, 0) 70%
+    ),
     linear-gradient(180deg, #000 0%, #050508 40%, #000 100%);
 }
 
-/* Background Stars Effect */
+/* ================= BACKGROUND STARS ================= */
+
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.8) 1px,
+    transparent 1px
+  );
   background-size: 120px 120px;
   animation: moveStars 120s linear infinite;
   opacity: 0.25;
@@ -36,28 +55,111 @@ body::after {
 }
 
 @keyframes moveStars {
-  from { background-position: 0 0; }
-  to { background-position: 500px 500px; }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 500px 500px;
+  }
 }
 
-/* ================= HERO SECTION (MAIN PAGE) ================= */
-.hero {
+/* ================= NAVBAR ================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 15px clamp(15px, 6vw, 12%);
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-purple);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ================= HERO SECTIONS ================= */
+
+.hero,
+.Gamehero {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 60px 20px 20px; /* تم تقليل المسافة من الأسفل للنصف */
+}
+
+.hero {
+  padding: 120px 20px 20px;
+}
+
+.Gamehero {
+  padding: 100px 20px 20px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  letter-spacing: 1px;
+}
+
+.Gamehero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
+
+.hero p {
+  margin: 8px 0 0;
+  font-size: 1.1rem;
+  opacity: 0.85;
 }
 
 .profile-img {
   width: 170px;
   height: 170px;
+  margin-bottom: 20px;
+  padding: 3px;
   border-radius: 50%;
   background: var(--accent-gradient);
-  padding: 3px;
   object-fit: cover;
-  margin-bottom: 20px;
   box-shadow: 0 0 35px var(--accent-glow);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -67,20 +169,8 @@ body::after {
   box-shadow: 0 0 50px var(--accent-glow-strong);
 }
 
-.hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  margin: 0;
-  letter-spacing: 1px;
-}
+/* ================= GRADIENT TEXT ================= */
 
-.hero p {
-  opacity: 0.85;
-  font-size: 1.1rem;
-  margin-top: 8px;
-  margin-bottom: 0;
-}
-
-/* Gradient Text Effect */
 .gold {
   background: var(--accent-gradient);
   background-size: 200% auto;
@@ -90,69 +180,71 @@ body::after {
 }
 
 @keyframes shine {
-  to { background-position: 200% center; }
+  to {
+    background-position: 200% center;
+  }
 }
 
-/* ================= GAME DETAILS PAGE HERO ================= */
-.Gamehero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding-top: 100px;
-  padding-bottom: 20px;
-}
+/* ================= SECTIONS ================= */
 
-.Gamehero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  margin: 0 0 10px 0;
-}
-
-/* ================= SECTIONS & CONTAINERS ================= */
 .section {
-  padding: 25px clamp(15px, 6vw, 12%) 50px; /* تقليل المسافة العلوية للنصف */
+  padding: 25px clamp(15px, 6vw, 12%) 50px;
 }
 
 .section h2 {
-  text-align: center;
+  margin: 0 0 30px;
   font-size: 2rem;
-  margin-top: 0;
-  margin-bottom: 30px; /* تقليل المسافة أسفل عناوين السكاشن */
   letter-spacing: 0.5px;
+  text-align: center;
 }
 
-/* ================= GAME CARD & DETAILS ================= */
+/* ================= GAME CARDS & DESCRIPTIONS ================= */
+
 .game,
 .game-description {
-  background-color: rgba(15, 15, 20, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto 40px;
-  border-radius: 20px;
   padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  background-color: rgba(15, 15, 20, 0.6);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
 }
 
+.game {
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.game:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.7),
+    0 0 20px var(--accent-glow);
+  border-color: rgba(161, 120, 223, 0.3);
+}
+
 .game h3 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 1.6rem;
+  margin: 0 0 20px;
   color: #fff;
+  font-size: 1.6rem;
 }
 
 .game p,
 .game-description p {
   max-width: 900px;
   margin: 0 0 12px;
-  line-height: 1.6;
   color: #ccc;
+  line-height: 1.6;
 }
 
-/* ================= RESPONSIVE FRAME SLIDER ================= */
+/* ================= GAME IMAGE SLIDER ================= */
+
 .game-images {
   position: relative;
   width: 100%;
@@ -178,48 +270,55 @@ body::after {
   opacity: 1;
 }
 
-/* Modern Centered Slider Buttons */
+/* Slider Buttons */
+
 .slider-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  font-size: 18px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 44px;
   height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 5;
-  border-radius: 50%;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(6px);
-  padding: 0;
   margin: 0;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 18px;
   line-height: 1;
+  cursor: pointer;
   user-select: none;
+  backdrop-filter: blur(6px);
+  transform: translateY(-50%);
+  transition: all 0.25s ease;
 }
 
 .slider-btn:hover {
   background: var(--accent-purple);
   border-color: transparent;
-  transform: translateY(-50%) scale(1.1);
   box-shadow: 0 0 15px var(--accent-glow);
+  transform: translateY(-50%) scale(1.1);
 }
 
-.prev { left: 15px; }
-.next { right: 15px; }
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
+}
 
 /* ================= BUTTONS & LINKS ================= */
+
 .game-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 15px;
   width: 100%;
   margin-top: 20px;
-  gap: 15px;
 }
 
 .game-link {
@@ -228,34 +327,32 @@ body::after {
   align-items: center;
   padding: 12px 24px;
   border: 1px solid var(--accent-purple);
-  color: #fff;
-  text-decoration: none;
   border-radius: 8px;
+  color: #fff;
   font-weight: 600;
-  transition: all 0.3s ease;
+  text-decoration: none;
   box-shadow: 0 0 10px rgba(161, 120, 223, 0.15);
+  transition: all 0.3s ease;
 }
 
 .game-link:hover {
   background: var(--accent-gradient);
   border-color: transparent;
-  color: #fff;
   box-shadow: 0 0 20px var(--accent-glow);
   transform: translateY(-2px);
 }
 
-/* Fixed Home Button */
 .home-btn {
   position: fixed;
   top: 20px;
   left: 20px;
+  z-index: 100;
   padding: 10px 20px;
+  border-radius: 10px;
   background: var(--accent-gradient);
   color: #fff;
   font-weight: bold;
   text-decoration: none;
-  border-radius: 10px;
-  z-index: 100;
   box-shadow: 0 0 15px var(--accent-glow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -265,18 +362,19 @@ body::after {
   box-shadow: 0 0 25px var(--accent-glow-strong);
 }
 
-/* ================= VIDEO CONTAINER ================= */
+/* ================= VIDEO ================= */
+
 .video-container {
   position: relative;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding-top: 56.25%;
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-  background-color: #000;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background-color: #000;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
 }
 
 .video-container iframe {
@@ -288,13 +386,54 @@ body::after {
   border: none;
 }
 
-/* ================= SCROLL REVEAL ANIMATION ================= */
+/* ================= ABOUT ME & SKILLS ================= */
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #ccc;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.skill-tag {
+  padding: 12px 25px;
+  border: 1px solid var(--accent-purple);
+  border-radius: 30px;
+  background: rgba(161, 120, 223, 0.05);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  box-shadow: 0 5px 15px var(--accent-glow);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* ================= SCROLL REVEAL ================= */
+
 .reveal {
   opacity: 0;
   transform: translateY(40px) scale(0.98);
-  transition: 
+  transition:
     opacity 0.8s ease,
-    transform 0.8s cubic-bezier(.2,.8,.2,1);
+    transform 0.8s cubic-bezier(.2, .8, .2, 1);
 }
 
 .reveal.show {
@@ -302,10 +441,88 @@ body::after {
   transform: translateY(0) scale(1);
 }
 
+/* ================= FOOTER ================= */
+
+.footer {
+  margin-top: 40px;
+  padding: 60px 20px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(5, 5, 8, 0.95);
+  text-align: center;
+}
+
+.footer h2 {
+  margin-bottom: 10px;
+  font-size: 2.2rem;
+}
+
+.footer p {
+  margin-bottom: 30px;
+  color: #ccc;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.cv-btn {
+  padding: 15px 35px;
+  border-color: transparent;
+  background: var(--accent-gradient);
+  font-size: 1.1rem;
+}
+
+.copyright {
+  margin-top: 50px !important;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+/* ================= BACK TO TOP ================= */
+
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  box-shadow: 0 0 15px var(--accent-glow);
+  transition: all 0.4s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(0) scale(1.1);
+  box-shadow: 0 0 25px var(--accent-glow-strong);
+}
+
 /* ================= MOBILE RESPONSIVE ================= */
+
 @media (max-width: 768px) {
   .hero {
-    padding-top: 40px;
+    padding-top: 140px;
     padding-bottom: 10px;
   }
 
@@ -332,8 +549,13 @@ body::after {
     font-size: 14px;
   }
 
-  .prev { left: 10px; }
-  .next { right: 10px; }
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
 
   .game-buttons {
     flex-direction: column;
@@ -342,5 +564,23 @@ body::after {
 
   .game-link {
     width: 100%;
+  }
+
+  .nav-links {
+    gap: 15px;
+    font-size: 0.9rem;
+  }
+
+  .nav-content {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .back-to-top {
+    right: 20px;
+    bottom: 20px;
+    width: 45px;
+    height: 45px;
   }
 }
