@@ -5,69 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Michaelbyte | AI Behavior Trees</title>
-  <style>
-    /* حل مشكلة قطع الخلفية في الشاشات الكبيرة */
-    body {
-      min-height: 100vh;
-      background-attachment: fixed;
-    }
-
-    /* تنسيق مخصوص لصفحة Coming Soon */
-    .coming-soon-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh; /* خليناها 100% بدل 80% */
-      text-align: center;
-      padding-top: 70px; /* مسافة عشان الـ Navbar مايغطيش على المحتوى */
-      box-sizing: border-box;
-    }
-
-    .coming-soon-container h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-      text-shadow: 0 0 20px var(--accent-glow-strong);
-    }
-
-    .coming-soon-container p {
-      font-size: 1.2rem;
-      color: #ccc;
-      max-width: 600px;
-      line-height: 1.6;
-      margin-bottom: 40px;
-      padding: 0 20px; /* لحماية النص في شاشات الموبايل */
-    }
-
-    .loader {
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(161, 120, 223, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--accent-purple);
-      animation: spin 1s ease-in-out infinite;
-      margin-bottom: 30px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- NAVBAR SECTION -->
   <nav class="navbar">
-    <div class="nav-content">
-      <a href="index.html" class="logo">M<span class="gold">B</span></a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-      </ul>
-    </div>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="index.html#home" class="nav-link" aria-label="Home">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </a>
+        <span class="nav-tooltip">Home</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link about-trigger" aria-label="About">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </a>
+        <span class="nav-tooltip">About</span>
+      </li>
+      <li class="nav-item">
+        <a href="index.html#video" class="nav-link" aria-label="Showreel">
+          <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+        </a>
+        <span class="nav-tooltip">Showreel</span>
+      </li>
+      <li class="nav-item">
+        <a href="index.html#skills" class="nav-link" aria-label="Skills & Code">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        </a>
+        <span class="nav-tooltip">Skills & Code</span>
+      </li>
+      <li class="nav-item">
+        <a href="index.html#games" class="nav-link" aria-label="Full Games">
+          <svg viewBox="0 0 24 24"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><circle cx="15" cy="13" r="1"></circle><circle cx="18" cy="11" r="1"></circle><rect x="2" y="6" width="20" height="12" rx="2"></rect></svg>
+        </a>
+        <span class="nav-tooltip">Full Games</span>
+      </li>
+      <li class="nav-item">
+        <a href="#contact" class="nav-link" aria-label="Get In Touch">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a>
+        <span class="nav-tooltip">Get In Touch</span>
+      </li>
+    </ul>
   </nav>
 
-  <!-- COMING SOON CONTENT -->
   <div class="coming-soon-container reveal">
     <div class="loader"></div>
     <h1>COMING <span class="gold">SOON</span></h1>
@@ -78,7 +59,27 @@
     </a>
   </div>
 
-  <!-- SCROLL ANIMATION SCRIPT -->
+  <footer id="contact" class="footer">
+    <h2>Get In Touch</h2>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/michaelbyte/" target="_blank" class="game-link">LinkedIn</a>
+      <a href="https://github.com/michael0byte/CV/raw/refs/heads/main/Michael_Saad_CV.pdf" target="_blank" class="game-link cv-btn">Download CV</a>
+    </div>
+    <p class="copyright">&copy; 2026 MichaelByte. All rights reserved.</p>
+  </footer>
+
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 style="margin: 0; color: #fff;">About <span class="gold">Me</span></h2>
+      <p>
+        Unreal Engine Developer with 3 years of hands-on experience in Blueprint visual scripting, gameplay mechanics, AI behavior systems, C++, and 3D asset integration. 
+        <br><br>
+        Pursuing a B.Sc. in Computer Science (Expected 2027) with a strong problem-solving foundation and a proven track record of delivering engaging game experiences from concept to completion.
+      </p>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

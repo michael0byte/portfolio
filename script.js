@@ -1,4 +1,3 @@
-// ===== Scroll Reveal Animation =====
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -14,8 +13,6 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("DOMContentLoaded", revealOnScroll);
 
-
-// ===== Responsive Image Slider =====
 document.querySelectorAll(".game-images").forEach(slider => {
   const imgs = slider.querySelectorAll("img");
   const next = slider.querySelector(".next");
@@ -43,13 +40,11 @@ document.querySelectorAll(".game-images").forEach(slider => {
     };
   }
 
-  // Auto slide every 4 seconds
   let autoSlide = setInterval(() => {
     i = (i + 1) % imgs.length;
     show(i);
   }, 4000);
 
-  // Pause on hover
   slider.addEventListener("mouseenter", () => clearInterval(autoSlide));
   slider.addEventListener("mouseleave", () => {
     autoSlide = setInterval(() => {
@@ -58,12 +53,11 @@ document.querySelectorAll(".game-images").forEach(slider => {
     }, 4000);
   });
 });
-// ===== Back to Top Button Logic =====
+
 const backToTopBtn = document.getElementById("backToTop");
 
 if (backToTopBtn) {
   window.addEventListener("scroll", () => {
-    // Show button when user scrolls down 300px
     if (window.scrollY > 300) {
       backToTopBtn.classList.add("visible");
     } else {
@@ -76,5 +70,78 @@ if (backToTopBtn) {
       top: 0,
       behavior: "smooth"
     });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById('aboutModal');
+  const triggers = document.querySelectorAll('.about-trigger');
+  const closeBtn = document.querySelector('.close-btn');
+
+  triggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (modal) modal.classList.add('show');
+    });
+  });
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+  }
+
+  if (modal) {
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  if (tabBtns.length > 0) {
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        btn.classList.add('active');
+        const targetId = btn.getAttribute('data-target');
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+      });
+    });
+  }
+});
+
+const modalImage = document.getElementById("imageModal");
+const modalImgContent = document.getElementById("expandedImg");
+
+function openModal(element) {
+  if (modalImage && modalImgContent) {
+    const img = element.querySelector('img');
+    modalImage.style.display = "flex";
+    modalImgContent.src = img.src;
+  }
+}
+
+function closeModal() {
+  if (modalImage) {
+    modalImage.style.display = "none";
+  }
+}
+
+if (modalImage) {
+  modalImage.addEventListener('click', function(e) {
+    if (e.target === modalImage) {
+      closeModal();
+    }
   });
 }
