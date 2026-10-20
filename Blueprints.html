@@ -58,7 +58,7 @@
 
   <div class="tabs-container">
     <button class="tab-btn active" data-target="melee-attack">Melee Attack System</button>
-    <!--<button class="tab-btn" data-target="second-mechanic">Second Mechanic</button>-->
+    <button class="tab-btn" data-target="endless-runner">Endless Runner System</button>
   </div>
 
   <div id="melee-attack" class="tab-content active">
@@ -116,10 +116,43 @@
     </div>
   </div>
 
-  <div id="second-mechanic" class="tab-content">
-    <div class="coming-soon-container" style="min-height: 40vh; padding-top: 20px;">
-      <h2><span class="gold">Waiting</span> for Data</h2>
-      <p>This space is ready for your next Blueprint mechanic.</p>
+  <div id="endless-runner" class="tab-content">
+    <div class="blueprint-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 900px;">
+      <div class="img-wrapper" onclick="openModal(this)">
+        <span class="step-number">1</span>
+        <img src="images/Blueprints/Screenshot20261020155102.png" alt="Overlap Trigger & Glitch Prevention">
+      </div>
+      
+      <div class="img-wrapper" onclick="openModal(this)">
+        <span class="step-number">2</span>
+        <img src="images/Blueprints/Screenshot20261020155114.png" alt="Tile Repositioning & Logic Reset">
+      </div>
+    </div>
+
+    <div class="game-description">
+      <p>A highly memory-optimized environment generator for Endless Runners. Instead of constantly spawning and destroying actors, this system intelligently recycles only two floor tiles to create an infinite path.</p>
+
+      <h3><span class="gold">System</span> Breakdown :</h3>
+      <ul>
+        <li><strong>Initialization & Overlap Protection (1)</strong> <br> On <code>BeginPlay</code>, the first tile is cached into a <code>Current Tile</code> variable. When the player steps into the Box Collision, an event is triggered. To prevent execution glitches (multiple fires), the Box Collision's <code>Generate Overlap Events</code> is immediately disabled.</li>
+        &emsp;
+        <li><strong>Repositioning (1 & 2)</strong> <br> The system takes the <code>Current Tile</code> and offsets its location forward to snap seamlessly behind the second tile. Concurrently, the trigger Box Collision is teleported to the beginning of the newly positioned floor.</li>
+        &emsp;
+        <li><strong>State Update & Reset (2)</strong> <br> A <code>Select</code> node checks which tile was just moved. If it was Tile 1, Tile 2 becomes the new <code>Current Tile</code> (and vice versa) for the next iteration. Finally, after a brief safety <code>Delay</code>, the Box Collision's overlap capability is reactivated to keep the loop going.</li>
+      </ul>
+    </div>
+
+    <div class="game-description" style="margin-top: 40px; text-align: center;">
+      <h3 style="margin-bottom: 20px;">Gameplay <span class="gold">Result</span></h3>
+      <div class="video-container">
+        <iframe 
+          src="https://www.youtube.com/embed/kAhbo9mlBnw" 
+          title="MichaelByte Endless Runner" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
   </div>
 
@@ -127,7 +160,7 @@
 
 <div id="imageModal" class="image-modal">
   <span class="close-modal" onclick="closeModal()"></span>
-  <img class="modal-content" id="expandedImg" alt="Blueprint Enlarged">
+  <img class="modal-content" id="expandedImg">
 </div>
 
 <footer id="contact" class="footer">
