@@ -116,8 +116,8 @@
     </div>
   </div>
 
-  <div id="endless-runner" class="tab-content">
-    <div class="blueprint-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 900px;">
+ <div id="endless-runner" class="tab-content">
+    <div class="blueprint-grid two-cols">
       <div class="img-wrapper" onclick="openModal(this)">
         <span class="step-number">1</span>
         <img src="images/Blueprints/Screenshot20261020155102.png" alt="Overlap Trigger & Glitch Prevention">
@@ -141,7 +141,6 @@
         <li><strong>State Update & Reset (2)</strong> <br> A <code>Select</code> node checks which tile was just moved. If it was Tile 1, Tile 2 becomes the new <code>Current Tile</code> (and vice versa) for the next iteration. Finally, after a brief safety <code>Delay</code>, the Box Collision's overlap capability is reactivated to keep the loop going.</li>
       </ul>
     </div>
-
     <div class="game-description" style="margin-top: 40px; text-align: center;">
       <h3 style="margin-bottom: 20px;">Gameplay <span class="gold">Result</span></h3>
       <div class="video-container">
