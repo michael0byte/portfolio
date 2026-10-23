@@ -145,3 +145,25 @@ if (modalImage) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const aiBtns = document.querySelectorAll('.ai-btn');
+  const aiDynamicImg = document.getElementById('aiDynamicImg');
+
+  if (aiBtns.length > 0 && aiDynamicImg) {
+    aiBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        aiBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const newImgSrc = btn.getAttribute('data-img');
+        
+        aiDynamicImg.style.opacity = '0';
+        setTimeout(() => {
+          aiDynamicImg.src = newImgSrc;
+          aiDynamicImg.style.opacity = '1';
+        }, 200); 
+      });
+    });
+  }
+});

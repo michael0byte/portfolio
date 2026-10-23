@@ -49,37 +49,95 @@
     </ul>
   </nav>
 
-  <div class="coming-soon-container reveal">
-    <div class="loader"></div>
-    <h1>COMING <span class="gold">SOON</span></h1>
-    <p>I'm currently structuring the documentation for my AI Behavior Trees and stealth mechanics. This section will feature deep dives into state-driven enemy perception, decision making, and dynamic patrol routing.</p>
-    
-    <a href="index.html" class="game-link" style="padding: 15px 40px; font-size: 1.1rem;">
-      Back to Home
-    </a>
+<div class="Gamehero reveal">
+  <h1>AI Behavior <span class="gold">Trees</span></h1>
+  <p>Dynamic decision making and state-driven enemy logic</p>
+</div>
+
+<div class="section reveal">
+
+  <div class="game-description" style="max-width: 1000px; margin: 0 auto 30px; text-align: center;">
+    <h3 style="margin-bottom: 20px;">Dynamic Combat <span class="gold">AI</span></h3>
+    <p>This AI system features dynamic decision making based on health and proximity, utilizing Selectors and Decorators to fluidly switch between three primary states: <strong>Chase, Attack, and Flee.</strong></p>
   </div>
 
-  <footer id="contact" class="footer">
-    <h2>Get In Touch</h2>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/michaelbyte/" target="_blank" class="game-link">LinkedIn</a>
-      <a href="https://github.com/michael0byte/CV/raw/refs/heads/main/Michael_Saad_CV.pdf" target="_blank" class="game-link cv-btn">Download CV</a>
-    </div>
-    <p class="copyright">&copy; 2026 MichaelByte. All rights reserved.</p>
-  </footer>
-
-  <div id="aboutModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h2 style="margin: 0; color: #fff;">About <span class="gold">Me</span></h2>
-      <p>
-        Unreal Engine Developer with 3 years of hands-on experience in Blueprint visual scripting, gameplay mechanics, AI behavior systems, C++, and 3D asset integration. 
-        <br><br>
-        Pursuing a B.Sc. in Computer Science (Expected 2027) with a strong problem-solving foundation and a proven track record of delivering engaging game experiences from concept to completion.
-      </p>
+  <div class="single-image-container" style="max-width: 1000px; margin: 0 auto 40px;">
+    <div class="img-wrapper" onclick="openModal(this)">
+      <img src="images/AI/MainBT.png" alt="Main Behavior Tree" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background: #1a1a24; cursor: pointer;">
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <div class="game-description" style="max-width: 1000px; margin: 0 auto;">
+    <h3><span class="gold">Logic</span> Flow :</h3>
+    <ul>
+      <li><strong>Flee State (Survival)</strong> <br> The primary check is health-based. The <code>IsHealthLess25_Dec</code> Decorator is set to Low Priority Abort. If the AI's health drops below 25% at any point during combat, it immediately aborts current actions and enters the Flee state. It calculates a random reachable point far from the player, runs there, heals itself over time using a Timer, and then resumes combat once fully recovered.</li>
+      &emsp;
+      <li><strong>Decision Node: Combat vs. Chase</strong> <br> If health is stable (>25%), the logic falls back to a secondary Selector. This branch uses the <code>IsPlayerNear_Dec</code> Decorator to evaluate the distance to the target player.</li>
+      &emsp;
+      <li><strong>Chase State</strong> <br> If the player is outside the attack range, the AI executes a standard <code>Move To</code> task, navigating the environment to close the distance to the player.</li>
+      &emsp;
+      <li><strong>Attack State</strong> <br> Once within range, the <code>Player Near Sequence</code> is executed. The AI focuses on the player (adjusting Yaw), executes the <code>HitPlayer</code> Task (playing the attack montage), unfocuses to allow free movement, and waits for a brief cooldown period before assessing the next move.</li>
+    </ul>
+  </div>
+
+  <h3 style="text-align: center; margin: 60px 0 20px;">Explore <span class="gold">Nodes</span> Details</h3>
+  
+  <div class="tabs-container" style="max-width: 1000px; margin: 0 auto 20px; flex-wrap: wrap; gap: 10px;">
+    <button class="tab-btn ai-btn active" data-img="images/AI/RunAwayTask.png">Run Away (Task)</button>
+    <button class="tab-btn ai-btn" data-img="images/AI/HitPlayerTask.png">Hit Player (Task)</button>
+    <button class="tab-btn ai-btn" data-img="images/AI/FocusTask.png">Focus (Task)</button>
+    <button class="tab-btn ai-btn" data-img="images/AI/UnFocusTask.png">UnFocus (Task)</button>
+    <button class="tab-btn ai-btn" data-img="images/AI/IsHealthLess25_Dec.png">Health &lt; 25% (Dec)</button>
+    <button class="tab-btn ai-btn" data-img="images/AI/IsPlayerNear_Dec.png">Player Near (Dec)</button>
+  </div>
+
+  <div class="single-image-container" style="max-width: 900px; margin: 0 auto 50px;">
+    <div class="img-wrapper" id="aiDynamicImgWrapper" onclick="openModal(this)">
+      <img id="aiDynamicImg" src="images/AI/RunAwayTask.png" alt="AI Node Detail" style="width: 100%; border-radius: 12px; border: 1px solid var(--accent-purple); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background: #1a1a24; cursor: pointer;">
+    </div>
+  </div>
+
+  <div class="game-description" style="margin-top: 40px; text-align: center;">
+    <h3 style="margin-bottom: 20px;">Gameplay <span class="gold">Result</span></h3>
+    <div class="video-container" style="max-width: 1000px; margin: 0 auto;">
+      <iframe 
+        src="https://www.youtube.com/embed/dNwNFwJRbIU" 
+        title="MichaelByte AI Behavior Tree" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+</div>
+
+<div id="imageModal" class="image-modal">
+  <span class="close-modal" onclick="closeModal()"></span>
+  <img class="modal-content" id="expandedImg">
+</div>
+
+<footer id="contact" class="footer">
+  <h2>Get In Touch</h2>
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/michaelbyte/" target="_blank" class="game-link">LinkedIn</a>
+    <a href="https://github.com/michael0byte/CV/raw/refs/heads/main/Michael_Saad_CV.pdf" target="_blank" class="game-link cv-btn">Download CV</a>
+  </div>
+  <p class="copyright">&copy; 2026 MichaelByte. All rights reserved.</p>
+</footer>
+
+<div id="aboutModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2 style="margin: 0; color: #fff;">About <span class="gold">Me</span></h2>
+    <p>
+      Unreal Engine Developer with 3 years of hands-on experience in Blueprint visual scripting, gameplay mechanics, AI behavior systems, C++, and 3D asset integration. 
+      <br><br>
+      Pursuing a B.Sc. in Computer Science (Expected 2027) with a strong problem-solving foundation and a proven track record of delivering engaging game experiences from concept to completion.
+    </p>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
